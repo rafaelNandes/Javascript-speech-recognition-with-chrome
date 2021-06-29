@@ -2,12 +2,17 @@ const button = document.querySelector('button')
 const text = document.querySelector('.text')
 
 const recognition = createRecognition()
+let listening = false
 
 button.addEventListener('click', e =>{
     if(!recognition) return
 
-    recognition.start()
+    listening ? recognition.stop() : recognition.start()
 
+    button.innerHTML = listening ? 'Aperte para falar' : 'Parar de escutar'
+
+    button.classList.toggle('button')
+    button.classList.toggle('button-stop')
 })
 
 
@@ -21,8 +26,9 @@ function createRecognition(){
     }
 
     recognition.lang = "pt_BR"
-    recognition.onstart = () => console.log('started')
-    recognition.onend = () => console.log('finished')
+
+    recognition.onstart = () => listening = true
+    recognition.onend = () => listening = false
     recognition.onerror = e => console.log('error', e)
     recognition.onresult = e => text.innerHTML = e.results[0][0].transcript
 
