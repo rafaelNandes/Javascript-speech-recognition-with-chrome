@@ -4,6 +4,5 @@
 
 ##### Features:
 
-- Tailwind CSS
 - Speech Recognition Web API for Google Chrome
 
