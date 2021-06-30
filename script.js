@@ -6,7 +6,7 @@ const recognition = createRecognition()
 //Control variable
 let listening = false
 
-button.addEventListener('click', e =>{
+button.addEventListener('click', () =>{
     if(!recognition) return
 
     //If the app is listening, stop by clicking the button. Else start listening
@@ -14,6 +14,7 @@ button.addEventListener('click', e =>{
 
     //Alternate text and css on the button
     button.innerHTML = listening ? 'Aperte para falar' : 'Parar de escutar'
+    
     button.classList.toggle('button')
     button.classList.toggle('button-stop')
 })
